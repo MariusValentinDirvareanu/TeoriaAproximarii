@@ -1,0 +1,318 @@
+Laborator #1
+
+Deschideti matlab
+
+---------------------------------------
+
+in terminal tipariti
+
+>cos(pi/2)
+
+>sin(pi/2)
+
+>ans
+
+
+
+
+tipariti apoi
+
+>cos(pi/2);
+
+deci pentru printare e suf sa omiteti ';'
+
+tipariti
+
+
+>x=cos(pi)
+
+>x
+
+va afisa ce e in variabila x
+
+>y=exp(2)
+
+>y
+
+-----------------------------------------------------
+> save tot
+
+va salva toate variabilele(x,y) in fisierul tot.mat
+
+pentru a le reincarca la o sesiune viitoare tipariti
+
+>load tot
+
+Comanda 
+
+>clear
+
+va sterge toate valorile din octave
+
+
+Exercitiul 1:
+
+1) Calculati  cos(pi/6),  e^2,  arctg(1). Puneti aceste valori in
+ variabilele x,y respectiv z.
+Incarcati variabilele in fisierul tot.mat si apoi stergeti toate
+variabilele cu comanda clear.
+Incarcati toate variabilele cu load si verificati valoarea lor.
+
+1') Ce face comanda  whos?  Dupa ce definiti cateva vartiabile,
+executai in terminal whos.
+ans:
+	afiseaza lista variabilelor alocate
+
+
+Vectori:
+
+tipariti
+
+>a=[1 2 3]
+
+
+acesta e un vector linie
+
+
+>a=[1;2;3] e un vector coloana
+
+
+tipariti
+
+>a'
+
+
+deci a' este transpusul lui a, daca a e coloana, a' va fi linie, daca
+a e linie, a' va fi coloana.
+
+
+
+
+tipariti
+
+
+>A=[1 2 3; 
+    2 3 4;
+    4 5 6]
+
+
+aceasta este matricea A. in general semnul ';' delimiteaza
+liniile.
+
+cum se calculeaza produse
+de vectori sau matrici?
+calculati
+
+>a=[1 2 3]
+>b=[1;2;3]
+>a*b
+
+>a=[1 2 7;
+    2 3 4;
+    3 4 5]
+
+>b=[1 2 3]'
+
+>a*b
+
+
+Cum se afla componente din vectori si matrici?
+
+
+>a(2,3)
+
+
+>a(1,1)
+
+
+>b(2)
+
+>b(3)
+
+
+Cum se calculeaza inverse de matrici?
+
+>inv(a)
+
+
+
+Cum se inmultesc vectorii componenta cu componenta?
+(Adica daca v=[v1,v2,v3] si w=[w1,w2,w3] atunci vrem
+ [v1*w1,v2*w2,v3*w3]
+
+exemplu:
+
+
+>a=[1 2 3]
+>b=[2,3,4]
+>a.*b
+
+deci pentru a calcula pe componente se utilizeaza un punct inaintea
+semnului *.
+
+
+
+cum se afla dimensiunea unei matrici?
+
+>A=[1 2 3;1 2 3; 2 3 4]
+>size(A)
+
+
+
+cum se genereaza vectori?
+
+
+>x=0:0.1:1
+x =
+
+ Columns 1 through 8:
+
+  0.00000  0.10000  0.20000  0.30000  0.40000  0.50000  0.60000
+  0.70000
+
+
+ Columns 9 through 11:
+
+  0.80000  0.90000  1.00000
+
+adica componentele lui x sunt numerele de la 0 la 1 cu increment
+0.1
+
+
+Tipariti
+
+>x=0:1:10
+
+
+
+
+Grafice:
+
+Graficul lui f(x)=x^2
+
+>v=0:0.1:1
+
+>plot(v,v.*v)
+
+
+in general primul vector v reprezinta valorile pe care le poate lua
+x, iar v.*v este vectorul cu valorile pe care le poate lua f(x).
+
+
+Exercitiu 2) Faceti graficul lui cos(x) pe intervalul [0,2pi]
+
+
+
+
+
+Fisiere cu extensia .m(m-files)
+
+Creati un fisier, dati-i numele l1.m  si scrieti in el
+liniile de text
+
+x=pi/2
+cos(x)
+sin(x)
+exp(x)
+
+Plasati acest fisier in directorul ce apare cand executati pwd in
+terminalul Octave.
+Apoi de la terminalul octave
+executati
+
+>l1
+
+
+---------------------------------
+se observa ca toate comenzile din fisierul l1.m se executa
+ linie cu linie.
+
+
+Cum se utilizeaza functiile in matlab? 
+
+creati un fisier pe care-l numiti cosx.m
+in fisier, prima linie se va scrie
+
+function z=cosx(x)
+%aceasta functie calculeaza puterea 3 a numarului cos(x)
+
+dupa care scrieti
+
+z=cos(x)^3
+
+
+Salvati fisierul
+
+iar apoi la linia de comanda din octave scrieti
+
+>cosx(0.5) 
+
+
+in acest fel se apeleaza functia cosx.
+daca tipariti     
+
+>help cosx 
+
+veti obtine lina de ajutor de sub antetul functiei. Este util
+sa scrieti linii de ajutor pentru a va reaminti de scopul pentru care
+a fost scrisa functia.
+
+
+Bucle for, while, if
+
+
+creati un fisier numit bucle.m 
+
+scrieti in el urmatorul text
+
+% bucla for
+a=0;
+for(i=0:4)
+a=a+i
+end
+
+
+
+
+% instructiuni if, else
+a=0;
+for(i=0:4)
+if(i/2==0)
+a+=i;
+else
+a+=i^2;
+end
+end
+
+
+
+% bucla while
+x=0;a=0;
+
+while(x<20)
+a=a+x
+x++;
+end
+
+executati scriptul bucle.m pentru a vedea care e efectul liniilor de
+ cod
+expuse mai sus.
+
+
+
+Exercitiu: Construiti o functie care sa calculeze
+suma primelor n numere naturale
+
+
+
+
+, o alta care sa calculeze suma 
+numerelor pare mai mici ca n utilizand bucla for.
+ans:
+	
+
+
+
+Faceti acelasi lucru utilizand bucla 'while'; 
+
+

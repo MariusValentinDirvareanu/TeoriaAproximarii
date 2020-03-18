@@ -1,0 +1,416 @@
+
+
+Calculul celei mai bune aproximari intr-un spatiu Hilbert
+
+Fie H un spatiu Hilbert si H1 un subspatiu finit dimensional al lui.
+
+Notam cu || ||  norma din H si cu <,> produsul scalar din H.
+
+Fie v un vector din H. Cea mai buna aproximare w lui v in H1 satisface
+
+||v-w| <= ||v-u||  pentru orice u in H1.
+
+Se arata ca de fapt w ar trebui sa fie proiectia lui v in spatiu Hilbert H1, adica acel vector w asa ca v-w 
+sa fie ortogonal pe toate elementele din H1.
+
+Fie  v1, v2   ... vn  vectori nenuli mutual ortogonali din H1  ( adica <vi,vj>=0 pentru orice i, j =1..n, i diferit de j)
+asa ca ei sa genereze H1,  H1=span{v1,...,vn}
+
+
+Atunci   se arata ca cea mai buna aproximare w se calculeaza cu formula
+
+(*)       w=<v,v1>v1/||v1||^2+ <v,v2>v2/||v2||^2+...+<v,vn>vn/||vn||^2
+
+
+Daca in plus vectorii v1, v2,...vn ar avea norma =1 atunci formula devine
+ 
+(**)       w=<v,v1>v1+ <v,v2>v2+...+<v,vn>vn
+
+Asadar, pentru calculul celei mai bune aproximari trebuie 
+
+1) Sa gasim o baza a lui H1 formata cu vectori mutual ortogonali de norma 1
+
+2) sa aplicam formula (**)
+
+
+Pentru a gasi o baza formata din vectori mutual ortogonali se poate folosi procedura Gramm-Schmidt
+de ortogonalizare a unui set de vectori u1,u2,...un care sunt liniar independenti.
+Din ei vom produce v1,v2,..vn care sunt in plus si mutual ortogonali.
+
+Algoritmul este
+
+
+---------------------------
+v1=u1/||u1||;
+
+for k de la 2 la n
+
+u=uk;
+u=u- (<u,v1>v1 + <u,v2>v2 +...+<u,v_(k-1)>v_(k-1) )
+
+vk=u/||u||;
+
+end for
+---------------------------
+
+
+mai elaborat el arata asa
+
+%(***)
+---------------------------
+v1=u1/||u1||;
+for k de la 2 la n
+u=uk;
+   for j de la 1 la k-1
+
+          u=u- <u,vj>vj;
+   end  
+     
+vk=u/||u||;
+
+end for
+---------------------------
+
+
+
+
+
+CERINTE 
+
+In R^n    produsul scalar a doi vectori coloana u,v de lungime n se calculeaza dupa formula
+
+u'*v
+
+Daca ei sunt linie produsul scalar este
+
+<u,v>=u*v';
+
+Norma euclidiana se calculeaza dupa formula
+
+||u||=norm(u)
+
+
+
+1) Calculati produsul scalar si norma coresp vectorilor  u=[1,2,3], v=[2 0 1]
+
+si coresp vectorilor u=[1; 2; 3], v=[0 0 1]'
+
+
+2) Verificati faptul ca vectorii u=[2 1], v=[-2 4] sunt ortogonali.
+
+
+3) Calculati produsul scalar al liniilor matricii A=[1 2 3;2 0 1;3 0 2]
+
+exemplu  A(1,:) e prima linie, A(2,:) e a doua,
+
+A(1,:)*A(2,:)' e produsul lor scalar
+
+
+
+4) Scrieti un program care primeste ca input un set de n vectori liniar indep u1,u2,...,un si scoate ca output un set de 
+n vectori v1,v2,..vn care genereaza acelasi spatiu liniar ca u1,u2,..un si, in plus sunt mutual ortogonali si de norma 1.
+Se va folosi procedura Gramm-Schmidt.
+
+
+Deoarece trebuie sa facem loop peste setul de vectori, vom aranja u1,u2...un sa fie liniile unei matrici A, ca in exercitiul 3 
+de mai sus.
+Iar outputul este tot o matrice B care contine pe liniile sale vectorii mutual ortogonali v1,v2,...vn
+
+
+
+programul ar trebui sa arate cam asa
+
+
+%------------------------------------------------------
+function B=grammschmidt(A)
+%data si numele dvs
+% completati aici cu info despre input, output
+
+
+%aflam numarul de vectori, adica lungimea primei coloane din A
+n=length(A(:,1));
+
+%initializam matricea B
+B=A;
+
+
+%procedura Gramm-Schmidt descrisa in (***) mai sus
+
+B(1,:)=B(1,:)/norm(B(1,:));
+  for(k=2:n)
+
+      for(j=1:k-1)
+         B(k,:)=B(k,:)-??????;    
+      end
+
+
+      % normalizam vk, daca vk diferit de 0, luam in calcul si varianta cand v1,v2,..vn nu sunt liniar indep
+
+
+      if(norm(B(k,:))>10^(-7))
+            B(k,:)=B(k,:)/norm(B(k,:));
+      end 
+
+  end
+%---------------------------------------------------
+
+
+
+5) Inlocuiti ???? mai sus cu codul corespunzator. Salvati textul intr-un m-file numit grammschmidt.m
+in directorul de lucrul al Matlab. ( la linia de comanda matlabului scrieti  edit grammschmidt.m, apoi copy-paste textul de mai sus.
+
+
+6) Ortogonalizati setul de vectori
+
+[1 2 3], [2 0 1], [0 0 2]
+
+
+adica definiti matricea 
+
+A=[ 1 2 3;2 0 1;0 0 2]
+
+si apoi executati 
+
+B=grammschmidt(A)
+
+scrieti mai jos outputul acestei comenzi.
+
+B =
+
+    0.2673    0.5345    0.8018
+    0.9163   -0.3984   -0.0398
+   -0.2981   -0.7454    0.5963
+
+
+7) Calculati B*B', scrieti mai jos outputul comenzii. Explicati rezultatul. 
+
+ans =
+
+    1.0000   -0.0000   -0.0000
+   -0.0000    1.0000   -0.0000
+   -0.0000   -0.0000    1.0000
+
+Vectorii sunt ortogonali.
+
+
+
+8)Scrieti un program care sa calculeze proiectia unui vector dat v pe spatiul generat de n vectori dati
+v1,v2,...vn.
+Se va implementa asadar formula (**) de mai sus.
+
+La fel ca in 4) vom considera ca v1, v2,..vn sunt aranjati pe liniile unei matrici A. 
+
+
+programul ar trebui sa arate cam asa
+
+
+%------------------------------------------------------
+function w=proj(v, A)
+%data si numele dvs
+% completati aici cu info despre input, output
+
+n=length(A(:,1));
+B=grammschmidt(A);
+
+w=0;
+
+for(k=1:n)
+
+w=w+??????;
+
+end
+%---------------------------------------------------
+
+
+
+
+9) Inlocuiti ???? cu codul potrivit. Salvati textul de mai sus in fisierul proj.m din directorul de lucrul al matlabului.
+
+
+10) Verificam codul. Pentru v=[1 1 1 1], A=[ 1 2 3 4;2 1 3 4;0 0 1 3] calculati 
+
+w=proj(v,A) 
+
+apoi calculati 
+(v-w)*A'
+
+
+si scrieti aici outputul. Explicati.
+
+ans =
+
+   1.0e-14 *
+
+    0.3553    0.2665    0.0888
+
+
+Vectorul v este ortogonal pe planul generat de vectorii lui A.
+
+
+
+
+11) Aplicatie. Sa aproximam functia Runge 1/(1+x^2) pe intervalul [-5,5] cu un polinom de gradul cel mult 11 in sensul aproximarii descrise  mai sus. Faceti copy/paste la liniile de cod de mai jos incadrate intre %----------
+
+%------------------------------------
+%generam o retea de numere echidistante pe intervalul -5,5
+
+x=-5:0.01:5;
+
+%generam vectorul ce va fi proiectat, valorile functiei runge pe reteaua x.
+
+v=1./(1+x.^2);
+
+%generam vectorii din spatiul in care proiectam, adica evaluam 1,x,x^2,...,x^11 pe reteaua respectiva si stocam vectorii rezultati pe %liniile lui A.
+n=length(v);
+A=zeros(11,n);
+
+for(k=0:11)
+A(k+1,:)=x.^k;
+end
+
+%proiectam v pe spatiul generat de primele 6 linii ale lui A (aproximam cu o combo de  1,x,x^2,..x^5)
+w5=proj(v,A(1:6,:));
+
+
+%proiectam v pe spatiul generat de primele 9 linii ale lui A (aproximam cu o combo de 1,x,x^2,..x^8)
+w8=proj(v,A(1:8,:));
+
+
+%proiectam v pe spatiul generat toate liniile lui A (aproximam cu o combo de 1,x,x^2,..x^11)
+w11=proj(v,A);
+
+% si acum vizualizam v(in rosu) si proiectiile w5 (albastru), w8(magenta), w11 (negru).
+
+plot(x, v, 'r',x,w5,'b',x,w8,'m',x,w11,'k')
+%-------------------------------------------------------
+
+Explicati rezultatul acestui experiment.  Calculati eroarea in norma infinit a aproximarii lui v cu w11  
+adica norm(v-w11,inf). 
+
+Influenteaza reteaua folosita (adica x) calitatea aproximarii? Verificati folosind o retea mai fina 
+(ca de ex. x=-5:0.005:5) si mariti si numarul de polinoame folosite, de ex in cod inlocuiti 11 cu 15. Cum este aproximarea rezultata? Cat este acum eroarea v-w15 in norma euclidiana?   
+
+
+
+12) Comparati cu aproximantul obtinut prin interpolare Lagrange. El este calculat mai jos. Puteti face copy-paste la tot textul de mai jos. Explicati rezultatul.
+
+
+
+%definim functia runge
+runge=inline('1./(1+x.^2)')
+
+%5 noduri echidistante intre -5 si 5
+x5=linspace(-5,5,5)';
+%valoarea lui runge pe aceste noduri
+yrunge5=runge(x5);
+
+
+%9 noduri echidistante intre -5 si 5
+x9=linspace(-5,5,9)';
+%valoarea lui runge pe aceste noduri
+yrunge9=runge(x9);
+
+
+%11 noduri echidistante intre -5 si 5
+x11=linspace(-5,5,11)';
+%valoarea lui runge pe aceste noduri
+yrunge11=runge(x11);
+
+%acum grafice
+%multe noduri echidistante intre -5 si 5
+xval=-5:0.01:5';
+%valoarea lui runge pe aceste noduri
+yval=runge(xval);
+
+%valoarea interpolantului Lagrange al lui runge cu 5 noduri pe xval
+p1=polyfit(x5,yrunge5,4);
+yval5=polyval(p1,xval);
+
+%valoarea interpolantului lui runge cu 9 noduri pe xval
+p1=polyfit(x9,yrunge9,8);
+yval9=polyval(p1,xval);
+
+
+%valoarea interpolantului lui runge cu 11 noduri pe xval
+p1=polyfit(x11,yrunge11,10);
+yval11=polyval(p1,xval);
+
+
+%plotam runge in rosu, primul interpolant(pe 5 noduri) in verde
+%al doilea interpolant in albastru, al treilea in magenta
+
+plot(xval, yval,'r',xval, yval5,'g',xval, yval9,'b',xval,yval11,'m')
+
+
+
+ 
+
+
+
+
+13) Mai jos aveti o comparatie intre cele 2 metode de aproximare, w11 din primul cod versus yval11 din al doilea. De curiozitate, comparati
+
+norm(runge(x)-w1,inf)  eroarea in aproximare prin proiectie
+
+si 
+
+norm(runge(x)-yval11,inf) eroarea in aproximare cu  polinoame Lagrange
+
+aveti in vedere ca ambele aproximari folosesc polinoame de grad cel mult 11.
+
+Puteti face copy/paste la tot textul de mai jos.
+
+
+%generam o retea de numere echidistante pe intervalul -5,5
+
+x=-5:0.01:5;
+
+%generam vectorul ce va fi proiectat, valorile functiei runge pe reteaua x.
+
+v=1./(1+x.^2);
+
+%generam vectorii din spatiul in care proiectam, adica evaluam 1,x,x^2,...,x^11 pe reteaua respectiva si stocam vectorii rezultati pe liniile lui A.
+n=length(v);
+A=zeros(11,n);
+
+for(k=0:11)
+A(k+1,:)=x.^k;
+end
+
+%proiectam v pe spatiul generat de primele 6 linii ale lui A (aproximam cu o combo de  1,x,x^2,..x^5)
+w5=proj(v,A(1:6,:));
+
+
+%proiectam v pe spatiul generat de primele 9 linii ale lui A (aproximam cu o combo de 1,x,x^2,..x^8)
+w8=proj(v,A(1:8,:));
+
+
+%proiectam v pe spatiul generat toate liniile lui A (aproximam cu o combo de 1,x,x^2,..x^13)
+w11=proj(v,A);
+
+
+
+%definim functia runge
+runge=inline('1./(1+x.^2)')
+
+%11 noduri echidistante intre -5 si 5
+x11=linspace(-5,5,11)';
+%valoarea lui runge pe aceste noduri
+yrunge11=runge(x11);
+
+%valoarea interpolantului Lagrange  lui runge cu 11 noduri pe xval
+p1=polyfit(x11,yrunge11,10);
+yval11=polyval(p1,x);
+
+
+%plotam runge in rosu, interpolantul Lagrange in verde
+%interpolantul obtinut prin proiectie in magenta
+
+plot(x, runge(x),'r',x, yval11,'g',x,w11,'m')
+
+
+
+
+
+
+ 
