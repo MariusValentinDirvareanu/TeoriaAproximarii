@@ -4,5 +4,5 @@ function a=cmmp(X, Y,m)
     A=matriceA(X,m);
     Atilde=A*A';
     b=A*Y';
-    a=Atilde\b; %aflam coeficientii polinomului aproximant de la puterea cea mai mica in sus.
+    a=fliplr((Atilde\b)'); %aflam coeficientii polinomului aproximant de la puterea cea mai mica in sus.
 end
