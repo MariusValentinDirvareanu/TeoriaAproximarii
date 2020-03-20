@@ -13,7 +13,7 @@ function a=natsplinecoef(x,y)
                 A(i,j)=h(j-1)/6;
             end
             if i-j==1
-                A(i,j)=h(j)/6
+                A(i,j)=h(j)/6;
             end
         end
     end
@@ -23,6 +23,6 @@ function a=natsplinecoef(x,y)
     for i=1:n-2
         b(i+1)=y(i)/h(i)-y(i+1)*(1/h(i)+1/h(i+1))+y(i+2)/h(i+1);
     end
-    b=b'
-    a=A\b
+    b=b';
+    a=A\b;
 end
