@@ -32,10 +32,12 @@ disp(y);
 m=length(x)-1;
 C=cmmp(x,y,m);
 disp(C);
+% Exercitiul 5
 figure(1);
 plot(x,y,'r');
 hold on;
 % plot(x,C(1)*x.^6+C(2)*x.^5+C(3)*x.^4+C(4)*x.^3+C(5)*x.^2+C(6)*x.^1+C(7),'b');
+% Exercitiul 6
 plot(x,C(1)*x.^10+C(2)*x.^9+C(3)*x.^8+C(4)*x.^7+C(5)*x.^6+C(6)*x.^5+C(7)*x.^4+C(8)*x.^3+C(9)*x.^2+C(10)*x.^1+C(11),'b');
 axis([-a,a,min(y)-0.1,max(y)+0.1]);
 
