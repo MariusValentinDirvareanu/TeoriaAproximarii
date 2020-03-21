@@ -18,8 +18,8 @@ function yval=natspline(x,y,xval)
             %prezentata la clasa.
             p(1)=a(i)*(x(k+1)-xval(i))^3/(6*h(i));
             p(2)=a(i+1)*(xval(i)-x(k))^3/(6*h(i));
-            p(3)=(y(i)-h(i)^2/6*a(i))*(x(k+1)-xval(i))/h(i);
-            p(4)=(y(i+1)-h(i)^2/6*a(i+1))*(xval(i)-x(k))/h(i);
-            yval(i)= p(1)+p(2)+p(3)+p(4);
+            p3=(y(i)-h(i)^2/6*a(i))*(x(k+1)-xval(i))/h(i);
+            p4=(y(i+1)-h(i)^2/6*a(i+1))*(xval(i)-x(k))/h(i);
+            yval(i)= p1+p2+p3+p4;
     end
 end
