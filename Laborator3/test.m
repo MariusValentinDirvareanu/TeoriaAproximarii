@@ -1,7 +1,7 @@
 clc; clear all; close all;
 %test
 x=[1 2 3 4 5] 
-y=[1 1.2 1.4 1 2] 
+y=[2 3 4 5 6] 
 xval=[1.5 2.5 3.5]
 n=length(x);
 for i=1:n-1
@@ -20,5 +20,10 @@ for i=1:length(xval)
         %***
         %evaluam s in xval(i).Atentie!!! p_k trebuie inlocuit cu formula corespunzatoare
         %prezentata la clasa.
-        yval(i)= a(i)*((x(i+1)-xval(i))^3/(6*h(i)))+a(i+1)*((xval(i)-x(i))^3/(6*h(i)))+(y(i)-h(i)^2*a(i)/6)*((x(i+1)-xval(i))/(h(i))+(y(i+1)-h(i)^2*a(i+1)/6)*((xval(i))-x(i)/h(i));
+        p1=a(i)*(x(k+1)-xval(i))^3/(6*h(i));
+        p2=a(i+1)*(xval(i)-x(k))^3/(6*h(i));
+        p3=(y(i)-h(i)^2/6*a(i))*(x(k+1)-xval(i))/h(i);
+        p4=(y(i+1)-h(i)^2/6*a(i+1))*(xval(i)-x(k))/h(i);
+        yval(i)= p1+p2+p3+p4;
 end
+yval
