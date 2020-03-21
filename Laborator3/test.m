@@ -26,4 +26,3 @@ for i=1:length(xval)
         p4=(y(i+1)-h(i)^2/6*a(i+1))*(xval(i)-x(k))/h(i);
         yval(i)= p1+p2+p3+p4;
 end
-yval
