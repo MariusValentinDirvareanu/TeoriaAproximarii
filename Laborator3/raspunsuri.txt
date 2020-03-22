@@ -1,0 +1,94 @@
+==========Polinoamele Cebasev==========
+===Polinom Cebasev de grad 7===
+1. a = 2.9134
+2. Valorile pentru z sunt:
+         0    0.4339    0.7818    0.9749   -0.4339   -0.7818   -0.9749
+
+Valorile pentru x sunt:
+         0    0.4339    0.7818    0.9749   -0.4339   -0.7818   -0.9749
+
+3.  
+    % fisier separat f.m
+    function rez=f(t,a)
+        rez=1/(1+25*t^2/a^2);
+    end
+    % end f.m
+
+
+    for i=1:length(x)
+        y(i)=f(x(i),a);
+    end
+    disp('Valorile pentru y sunt:');
+    disp(y);
+
+    Valorile pentru y sunt:
+    1.0000    0.6433    0.3571    0.2632    0.6433    0.3571    0.2632
+
+
+4.  m=length(x)-1;
+    C=cmmp(x,y,m); % sau C=polyspace(x,y,m);
+    disp('Valorile polinomului Lagrange de interpolare sunt:');
+    disp(C);
+
+    Valorile polinomului Lagrange de interpolare sunt:
+    -1.5449    0.0000    3.2280   -0.0000   -2.4477    0.0000    1.0000
+
+5.  figure(1);
+    plot(x,y,'r');
+    hold on;
+    plot(x,C(1)*x.^6+C(2)*x.^5+C(3)*x.^4+C(4)*x.^3+C(5)*x.^2+C(6)*x.^1+C(7),'b');
+    axis([-a,a,min(y)-0.1,max(y)+0.1]);
+
+
+
+===Polinom Cebasev de grad 11===
+1. a = 2.8147
+2. Valorile pentru z sunt:
+         0   -0.2817   -0.5406   -0.7557   -0.9096   -0.9898    0.2817    0.5406    0.7557    0.9096    0.9898
+
+Valorile pentru x sunt:
+         0   -0.2817   -0.5406   -0.7557   -0.9096   -0.9898    0.2817    0.5406    0.7557    0.9096    0.9898
+
+3.  
+    % fisier separat f.m
+    function rez=f(t,a)
+        rez=1/(1+25*t^2/a^2);
+    end
+    % end f.m
+
+
+    for i=1:length(x)
+        y(i)=f(x(i),a);
+    end
+    disp('Valorile pentru y sunt:');
+    disp(y);
+
+    Valorile pentru y sunt:
+    1.0000    0.8097    0.5361    0.3716    0.2899    0.2564    0.8097    0.5361    0.3716    0.2899    0.2564
+
+
+4.  m=length(x)-1;
+    C=cmmp(x,y,m); % sau C=polyspace(x,y,m);
+    disp('Valorile polinomului Lagrange de interpolare sunt:');
+    disp(C);
+
+    Valorile polinomului Lagrange de interpolare sunt:
+   -9.2200    0.0000   27.0234   -0.0000  -30.2451    0.0000   16.5660   -0.0000   -4.9787    0.0000    1.0000
+
+5.  figure(1);
+    plot(x,y,'r');
+    hold on;
+    plot(x,C(1)*x.^10+C(2)*x.^9+C(3)*x.^8+C(4)*x.^7+C(5)*x.^6+C(6)*x.^5+C(7)*x.^4+C(8)*x.^3+C(9)*x.^2+C(10)*x.^1+C(11),'b');
+    axis([-a,a,min(y)-0.1,max(y)+0.1]);
+
+6. Interpolantii aproximeaza identic functia f.
+
+=========Interpolantul spline cubic natural===========
+
+
+
+
+
+
+
+
