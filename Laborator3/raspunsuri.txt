@@ -84,7 +84,123 @@ Valorile pentru x sunt:
 6. Interpolantii aproximeaza identic functia f.
 
 =========Interpolantul spline cubic natural===========
+1.  function a=natsplinecoef(x,y)
+    n=length(x);
+    A=eye(n);
+    for i=1:n-1
+        h(i)=x(i+1)-x(i);
+    end
+    for i=2:n-1
+        for j=1:n
+            if i==j
+                A(i,j)=(h(j-1)+h(j))/3;
+            end
+            if i<j
+                A(i,j)=h(j-1)/6;
+            end
+            if i-j==1
+                A(i,j)=h(j)/6;
+            end
+        end
+    end
+    %construieste vectorul b conform formulelor
+    b(1)=0;
+    b(n)=0;
+    for i=1:n-2
+        b(i+1)=y(i)/h(i)-y(i+1)*(1/h(i)+1/h(i+1))+y(i+2)/h(i+1);
+    end
+    b=b';
+    a=A\b;
+    end
 
+
+2.  function yval=natspline(x,y,xval)
+    n=length(x);
+    for i=1:n-1
+        h(i)=x(i+1)-x(i);
+    end
+    %initializam yval
+    yval=xval;
+    %determinam coeficientii interpolantului spline
+    a=natsplinecoef(x,y);
+    for i=1:length(xval)
+        %determinam indexul primului interval [x_k,x_(k+1)] in care se afla xval(i)
+        k=sum(x<=xval(i));
+        if k==n
+            k=n-1; 
+        end
+            %***
+            %evaluam s in xval(i).Atentie!!! p_k trebuie inlocuit cu formula corespunzatoare
+            %prezentata la clasa.
+            p(1)=a(i)*(x(k+1)-xval(i))^3/(6*h(i));
+            p(2)=a(i+1)*(xval(i)-x(k))^3/(6*h(i));
+            p(3)=(y(i)-h(i)^2/6*a(i))*(x(k+1)-xval(i))/h(i);
+            p(4)=(y(i+1)-h(i)^2/6*a(i+1))*(xval(i)-x(k))/h(i);
+            yval(i)= p(1)+p(2)+p(3)+p(4);
+    end
+    end
+
+3.  x=[1 2 3 4 5] 
+    y=[2 3 4 5 6] 
+    xval=[1.5 2.5 3.5]
+    natspline(x,y,xval)
+
+
+    x =
+
+     1     2     3     4     5
+
+
+    y =
+
+     2     3     4     5     6
+
+
+    xval =
+
+    1.5000    2.5000    3.5000
+
+
+    ans =
+
+    2.5000    3.5000    4.500
+
+
+4.  x=[1 2 3 4 5];
+    y=[1 1.2 1.4 1 2];
+    xval=[1.5 2.5 3.5];
+    yval=natspline(x,y,xval);
+    plot(x,y,'*');
+    hold on;
+    plot(xval,yval,'r');
+
+
+
+5.  x=[1 2 3 4 5];
+    y=[1 1.2 1.4 1 2];
+    xval=1:0.1:5;
+    yval=spline(x,y,xval);
+    plot(x,y,'*');
+    hold on;
+    plot(xval,yval,'r');
+    hold on;
+    n=length(x);
+    for i=1:n-1
+        h(i)=x(i+1)-x(i);
+    end
+    a=natsplinecoef(x,y);
+
+    k1=a(2)/2*h(2)-y(1)/h(1)+h(1)*a(1)/6+y(2)/h(1)-h(1)*a(2)/6;
+    kn=a(4)/2*h(4)-y(4-1)/h(4-1)+h(4-1)*a(4-1)/6+y(4)/h(4-1)-h(4-1)*a(4)/6;
+
+
+    yval2=spline(x, [k1,y,kn],xval);
+    plot(xval,yval2,'b');
+    disp('Norma infinit este:');
+    disp(norm(abs(yval-yval2),Inf));
+
+    Norma infinit este:
+    0.4075
 
 
 

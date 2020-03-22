@@ -19,4 +19,5 @@ kn=a(4)/2*h(4)-y(4-1)/h(4-1)+h(4-1)*a(4-1)/6+y(4)/h(4-1)-h(4-1)*a(4)/6;
 
 yval2=spline(x, [k1,y,kn],xval);
 plot(xval,yval2,'b');
-norm(abs(yval-yval2),Inf)
+disp('Norma infinit este:');
+disp(norm(abs(yval-yval2),Inf));
