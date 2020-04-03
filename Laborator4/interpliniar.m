@@ -15,7 +15,8 @@ yval=xval;
         %***
         %evaluam interpolantul in xval(k). (a se vedea formula (1),
         % aveti in vedere ca y_i=f(x_i)) deci
-        yval(k)=rezolvare;
+        % (yi+1 ? yi)(x ? xi)=(xi+1 ? xi) + yi;
+        yval(k)=(y(k+1)-y(k))*(xval(k)-x(k))/(x(k+1)-x(k))+y(k);
     end
 end
 %==========================
