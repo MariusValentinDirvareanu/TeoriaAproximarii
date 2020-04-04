@@ -1,0 +1,9 @@
+clc; close all; clear all;
+A = log2(sum(double('DIRVAREANUMARIUS')))
+x=1:5;
+% inli
+% f=inline('2*x+10.2503');
+f=@(x) (2*x+10.2503);
+xval=1:0.2:5;
+yval=interpliniar(x,f,xval);
+norm(yval-2*xval-A)
