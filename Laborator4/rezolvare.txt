@@ -1,3 +1,5 @@
 ==Cerinta 2==
-Explicatie: 
 7.250064e-06
+Explicatie: 
+==Cerinta 3==
+Explicatie: 
