@@ -9,3 +9,5 @@ Explicatie:
 ==Cerinta 6==
 3.019807e-14
 Explicatie: 
+==Cerinta 7==
+Explicatie: 
