@@ -1,5 +1,4 @@
-function cerinta3()
-    A = log2(sum(double('DIRVAREANUMARIUS')));
+function cerinta3(A)
     figure(1);
     % f=inline('sin(x+A)');
     x=0:0.01:pi/2;

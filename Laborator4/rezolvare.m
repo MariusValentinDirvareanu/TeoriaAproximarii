@@ -1,10 +1,11 @@
 clc; close all; clear global;
+A = log2(sum(double('DIRVAREANUMARIUS')));
 fileID = fopen('rezolvare.txt','w');
 fprintf(fileID,'==Cerinta 2==\n');
-cerinta2(fileID);
+cerinta2(fileID,A);
 fprintf(fileID,'Explicatie: \n');
 fprintf(fileID,'==Cerinta 3==\n');
-cerinta3();
+cerinta3(A);
 fprintf(fileID,'Explicatie: \n');
 fprintf(fileID,'==Cerinta 5==\n');
 [e1,e1p]=calcul_erori(4)

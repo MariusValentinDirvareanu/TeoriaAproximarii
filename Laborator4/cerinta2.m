@@ -1,5 +1,4 @@
-function cerinta2(fileID)
-    A = log2(sum(double('DIRVAREANUMARIUS')));
+function cerinta2(fileID,A)
     x=1:5;
     % inline este vechi si va fi scos in versiunile anterioare de Matlab
     % f=inline('2*x+A');
