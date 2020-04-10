@@ -19,12 +19,15 @@ function [eroaref,eroarefprim]=calcul_erori(n)
         %vrem sa calculam integrala functiei (sin(t)+A-(c1*t+c2))^2 pe intervalul [ x(i),x(i+1)],
         %vezi exemplul 0.1 de mai sus.
         %inlocuiti corespunzator
-        g=inline( '(sin(t)+10.2503-(c1*t+c2)).^2','t','c1','c2');
+        % g=inline( '(sin(t)+10.2503-(c1*t+c2)).^2','t','c1','c2');
+        g=@(t,c1,c2) ((sin(t)+10.2503-(c1*t+c2)).^2);
         er= quad(@(t)g(t,c1,c2),0,pi/2);
         eroaref=eroaref+ er;
         %acum vrem sa calculam eroarea in aproximarea derivatei vezi a 2-a integrala in formula (2).
-        g=inline( '(cos(t)-c1).^2','t','c1');
-        er= quad(@(t)g(t,c1),pi/2);
+        % inline va fi scos in urmatoarele versiuni de Matlab
+        % g=inline( '(cos(t)-c1).^2','t','c1');
+        g=@(t,c1) ((cos(t)-c1).^2);
+        er= quad(@(t)g(t,c1),0,pi/2);
         eroarefprim=eroarefprim+ er;
     end
     eroaref=eroaref^0.5;
