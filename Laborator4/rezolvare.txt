@@ -1,13 +1,38 @@
 ==Cerinta 2==
 3.552714e-15
 Explicatie: 
+
+
 ==Cerinta 3==
 Explicatie: 
+
+
 ==Cerinta 5==
 Explicatie: 
+7.786001e-01
+7.270662e-01
+7.122808e-01
+7.062724e-01
+7.064126e-01
+7.066716e-01
 Explicatie: 
+
+
 ==Cerinta 6==
 3.019807e-14
 Explicatie: 
+
+
 ==Cerinta 7==
+Explicatie: 
+
+
+==Cerinta 9==
+Explicatie: 
+7.987004e+00
+7.996749e+00
+7.999187e+00
+3.993633e+00
+3.998407e+00
+3.999602e+00
 Explicatie: 

@@ -17,15 +17,15 @@ function [eroaref,eroarefprim]=calcul_erori_quad(n)
         %vrem sa calculam integrala functiei (sin(t)+A-(c1*t^2+c2*t+c3))^2
         % pe intervalul [ xi,x(i+1)],
         % g=inline( '(sin(t)+A-(c1*t^2+c2*t+c3)).^2','t','c1','c2','c3');
-        g=@(t,c1,c2,c3) ((sin(t)+A-(c1*t^2+c2*t+c3))^2);
-        er= quad(@(t)g(t,c1,c2,c3),0,pi/2);
+        g=@(t,c1,c2,c3) ((sin(t)+A-(c1*t.^2+c2*t+c3)).^2);
+        er= quad(@(t)g(t,c1,c2,c3),x(i),x(i+1));
         eroaref=eroaref+ er;
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %vrem sa calculam integrala functiei (cos(t)-(2*c1*t+c2))^2
         %pe intervalul [ xi,x(i+1)],
         % g=inline( '(cos(t)-(2*c1*t+c2)).^2','t','c1','c2');
-        g=@(t,c1,c2) ((cos(t)-(2*c1*t+c2))^2);
-        er= quad(@(t)g(t,c1,c2),0,pi/2);
+        g=@(t,c1,c2) ((cos(t)-(2*c1*t+c2)).^2);
+        er= quad(@(t)g(t,c1,c2),x(i),x(i+1));
         eroarefprim=eroarefprim+er;
     end
     eroaref=eroaref^0.5;
