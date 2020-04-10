@@ -1,5 +1,5 @@
 ==Cerinta 2==
-7.250064e-06
+3.552714e-15
 Explicatie: 
 ==Cerinta 3==
 Explicatie: 

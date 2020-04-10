@@ -1,8 +1,9 @@
 function cerinta3()
+    A = log2(sum(double('DIRVAREANUMARIUS')));
     figure(1);
     % f=inline('sin(x+A)');
     x=0:0.01:pi/2;
-    f=@(x) (sin(x+10.2503));
+    f=@(x) (sin(x+A));
     rez=feval(f,x);
     plot(x,rez,'b');
     hold on;
