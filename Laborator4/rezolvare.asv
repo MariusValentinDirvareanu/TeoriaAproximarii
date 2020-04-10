@@ -20,12 +20,5 @@ e1p/e2p
 e2p/e3p
 e3p/e4p
 fprintf(fileID,'Explicatie: \n');
-fprintf(fileID,'==Cerinta 6==\n');
-x=1:5;
-%f=inline('2*x.^2+A');
-f=@(x) (2*x.^2+A);
-xval=1:0.2:5;
-yval=interpcuadratic(x,f,xval);
-fprintf(fileID,'%d\n',norm(yval-2*xval.^2-A));
-fprintf(fileID,'Explicatie: \n');
+fprintf(fileID,'==Cerinta 5==\n');
 fclose(fileID);

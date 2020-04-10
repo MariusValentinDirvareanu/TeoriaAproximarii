@@ -4,3 +4,8 @@ Explicatie:
 ==Cerinta 3==
 Explicatie: 
 ==Cerinta 5==
+Explicatie: 
+Explicatie: 
+==Cerinta 6==
+3.019807e-14
+Explicatie: 
