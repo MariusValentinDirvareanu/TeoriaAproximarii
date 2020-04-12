@@ -6,6 +6,8 @@ Rezultatul obtinut arata diferenta dintre aproximarea interpolantului Lagrange p
 
 ==Cerinta 3==
 figure(1);
+% inline este vechi si va fi scos in versiunile anterioare de Matlab
+% f=inline('sin(x+A)');
 xval=0:0.01:pi/2;
 f=@(x) (sin(x+A));
 rez=feval(f,xval);
@@ -27,6 +29,32 @@ Explicatie:
 Graficul arata efectul impartirii intervalului [0,pi/2] in cat mai multe bucati. Cu cat sunt mai multe bucati, cu atat aproximarea este mai buna.
 
 
+==Cerinta 4==
+function [eroaref,eroarefprim]=calcul_erori(n)
+A = log2(sum(double('DIRVAREANUMARIUS')));
+x=linspace(0,pi/2,n+1);
+y=sin(x)+A;
+eroaref=0;
+eroarefprim=0;
+for i=1:n
+c=polyfit(x,y,1);
+c1=c(1);
+c2=c(2);
+% g=inline( '(sin(t)+A-(c1*t+c2)).^2','t','c1','c2');
+g=@(t,c1,c2) ((sin(t)+A-(c1*t+c2)).^2);
+er= quad(@(t)g(t,c1,c2),0,pi/2);
+eroaref=eroaref+ er;
+% inline va fi scos in urmatoarele versiuni de Matlab
+% g=inline( '(cos(t)-c1).^2','t','c1');
+g=@(t,c1) ((cos(t)-c1).^2);
+er= quad(@(t)g(t,c1),0,pi/2);
+eroarefprim=eroarefprim+ er;
+end
+eroaref=eroaref^0.5;
+eroarefprim=eroarefprim^0.5;
+end
+
+
 ==Cerinta 5==
 Explicatie: 
 e1, e2, e3, e4 reprezinta eroarile aprozimatii functiei f pe subintervalele 4, 8, 16, 32, iar e1p, e2p, e3p, e4p reprezinta erorile aproximarii primei derivate a functiei f pe aceleasi subintervale.
@@ -38,6 +66,23 @@ e2p/e3p=7.064126e-01
 e3p/e4p=7.066716e-01
 Explicatie: 
 Din rezultatele de mai sus se observa o diferenta foarte mica intre erori, acestea fiind aproximative intre ele, atat pentru functia f, cat si pentru prima derivata a acesteia.
+
+
+==Cerinta 5 Interpolantul continuu, cuadratic pe portiuni==
+function yval=interpcuadratic(x,f,xval)
+n=length(x);
+yval=xval;
+for k=1:length(xval)
+i=sum(x<=xval(k));
+if(i==n) 
+i=n-1; 
+end
+xx=[x(i),(x(i)+x(i+1))/2,x(i+1)];
+yy=feval(f,xx);
+c=polyfit(xx,yy,2);
+yval(k)= c(1)*xval(k)^2+c(2)*xval(k)+c(3);
+end
+end
 
 
 ==Cerinta 6==
@@ -63,6 +108,31 @@ plot(xval,yval2,'y');
 legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2');
 Explicatie: 
 Graficul arata efectul impartirii intervalului [0,pi/2] in cat mai multe bucati. Cu cat sunt mai multe bucati, cu atat aproximarea este mai buna.
+
+
+==Cerinta 8==
+function [eroaref,eroarefprim]=calcul_erori_quad(n)
+A = log2(sum(double('DIRVAREANUMARIUS')));
+x=linspace(0,pi/2,n+1);
+eroaref=0;
+eroarefprim=0;
+for i=1:n
+xx=[x(i),(x(i)+x(i+1))/2,x(i+1)];
+yy=sin(xx)+A;
+c=polyfit(xx,yy,2);
+c1=c(1);c2=c(2);c3=c(3);
+% g=inline( '(sin(t)+A-(c1*t^2+c2*t+c3)).^2','t','c1','c2','c3');
+g=@(t,c1,c2,c3) ((sin(t)+A-(c1*t.^2+c2*t+c3)).^2);
+er= quad(@(t)g(t,c1,c2,c3),x(i),x(i+1));
+eroaref=eroaref+ er;
+% g=inline( '(cos(t)-(2*c1*t+c2)).^2','t','c1','c2');
+g=@(t,c1,c2) ((cos(t)-(2*c1*t+c2)).^2);
+er= quad(@(t)g(t,c1,c2),x(i),x(i+1));
+eroarefprim=eroarefprim+er;
+end
+eroaref=eroaref^0.5;
+eroarefprim=eroarefprim^0.5;
+end
 
 
 ==Cerinta 9==

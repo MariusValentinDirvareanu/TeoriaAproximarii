@@ -20,8 +20,8 @@ function cerinta3(fileID, A)
     plot(xval,yval3,'magenta');
     legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2','Functia evaluata in x3');
     fprintf(fileID,'figure(1);\n');
-    fprintf(fileID,'% inline este vechi si va fi scos in versiunile anterioare de Matlab\n');
-    fprintf(fileID,"% f=inline('sin(x+A)');\n");
+    fprintf(fileID,'%% inline este vechi si va fi scos in versiunile anterioare de Matlab\n');
+    fprintf(fileID,"%% f=inline('sin(x+A)');\n");
     fprintf(fileID,'xval=0:0.01:pi/2;\n');
     fprintf(fileID,'f=@(x) (sin(x+A));\n');
     fprintf(fileID,'rez=feval(f,xval);\n');
