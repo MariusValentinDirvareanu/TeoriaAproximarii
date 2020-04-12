@@ -1,0 +1,30 @@
+function cerinta7(fileID, A)
+    f=@(x) (sin(x+A));
+    xval=0:0.2:pi/2;
+    figure(2);
+    yval0=feval(f,xval);
+    plot(xval,yval0,'r');
+    hold on;
+    x1=linspace(0,pi/2,2);
+    yval1=interpcuadratic(x1,f,xval);
+    plot(xval,yval1,'b');
+    hold on;
+    x2=linspace(0,pi/2,3);
+    yval2=interpcuadratic(x2,f,xval);
+    plot(xval,yval2,'y');
+    legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2');
+    fprintf(fileID,"f=@(x) (sin(x+A));\n");
+    fprintf(fileID,"xval=0:0.2:pi/2;\n");
+    fprintf(fileID,"figure(2);\n");
+    fprintf(fileID,"yval0=feval(f,xval);\n");
+    fprintf(fileID,"plot(xval,yval0,'r');\n");
+    fprintf(fileID,"hold on;\n");
+    fprintf(fileID,"x1=linspace(0,pi/2,2);\n");
+    fprintf(fileID,"yval1=interpcuadratic(x1,f,xval);\n");
+    fprintf(fileID,"plot(xval,yval1,'b');\n");
+    fprintf(fileID,"hold on;\n");
+    fprintf(fileID,"x2=linspace(0,pi/2,3);\n");
+    fprintf(fileID,"yval2=interpcuadratic(x2,f,xval);\n");
+    fprintf(fileID,"plot(xval,yval2,'y');\n");
+    fprintf(fileID,"legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2');\n");
+end

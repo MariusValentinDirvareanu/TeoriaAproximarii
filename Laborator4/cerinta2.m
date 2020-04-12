@@ -5,5 +5,5 @@ function cerinta2(fileID,A)
     f=@(x) (2*x+A);
     xval=1:0.2:5;
     yval=interpliniar(x,f,xval);
-    fprintf(fileID,"%d\n",norm(yval-2*xval-A));
+    fprintf(fileID,"Rezultat: %d\n",norm(yval-2*xval-A));
 end

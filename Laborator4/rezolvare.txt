@@ -1,38 +1,78 @@
 ==Cerinta 2==
-3.552714e-15
+Rezultat: 3.552714e-15
 Explicatie: 
+Rezultatul obtinut arata diferenta dintre aproximarea interpolantului Lagrange pe portiuni si functia data (f=2*x+A) evaluata in fiecare xval, facandu-se norma 2. Valoarea este foarte apropiata de 0 datorita aproximarii foarte bune.
 
 
 ==Cerinta 3==
+figure(1);
+xval=0:0.01:pi/2;
+f=@(x) (sin(x+A));
+rez=feval(f,xval);
+plot(xval,rez,'b');
+hold on;
+x1=linspace(0,pi/2,5);
+yval1=interpliniar(x1,f,xval);
+plot(xval,yval1,'r');
+hold on;
+x2=linspace(0,pi/2,9);
+yval2=interpliniar(x2,f,xval);
+plot(xval,yval2,'y');
+hold on;
+x3=linspace(0,pi/2,17);
+yval3=interpliniar(x3,f,xval);
+plot(xval,yval3,'magenta');
+legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2','Functia evaluata in x3');
 Explicatie: 
+Graficul arata efectul impartirii intervalului [0,pi/2] in cat mai multe bucati. Cu cat sunt mai multe bucati, cu atat aproximarea este mai buna.
 
 
 ==Cerinta 5==
 Explicatie: 
-7.786001e-01
-7.270662e-01
-7.122808e-01
-7.062724e-01
-7.064126e-01
-7.066716e-01
+e1, e2, e3, e4 reprezinta eroarile aprozimatii functiei f pe subintervalele 4, 8, 16, 32, iar e1p, e2p, e3p, e4p reprezinta erorile aproximarii primei derivate a functiei f pe aceleasi subintervale.
+e1/e2=7.786001e-01
+e2/e3=7.270662e-01
+e3/e4=7.122808e-01
+e1p/e2p=7.062724e-01
+e2p/e3p=7.064126e-01
+e3p/e4p=7.066716e-01
 Explicatie: 
+Din rezultatele de mai sus se observa o diferenta foarte mica intre erori, acestea fiind aproximative intre ele, atat pentru functia f, cat si pentru prima derivata a acesteia.
 
 
 ==Cerinta 6==
-3.019807e-14
+Rezultat: 3.019807e-14
 Explicatie: 
+Rezultatul obtinut arata diferenta dintre aproximarea interpolantului Lagrange pe portiuni si functia data (f=2*x^2-A) evaluata in fiecare xval, facandu-se norma 2. Valoarea este foarte apropiata de 0 datorita aproximarii foarte bune.
 
 
 ==Cerinta 7==
+f=@(x) (sin(x+A));
+xval=0:0.2:pi/2;
+figure(2);
+yval0=feval(f,xval);
+plot(xval,yval0,'r');
+hold on;
+x1=linspace(0,pi/2,2);
+yval1=interpcuadratic(x1,f,xval);
+plot(xval,yval1,'b');
+hold on;
+x2=linspace(0,pi/2,3);
+yval2=interpcuadratic(x2,f,xval);
+plot(xval,yval2,'y');
+legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2');
 Explicatie: 
+Graficul arata efectul impartirii intervalului [0,pi/2] in cat mai multe bucati. Cu cat sunt mai multe bucati, cu atat aproximarea este mai buna.
 
 
 ==Cerinta 9==
 Explicatie: 
-7.987004e+00
-7.996749e+00
-7.999187e+00
-3.993633e+00
-3.998407e+00
-3.999602e+00
+e1, e2, e3, e4 reprezinta eroarile aprozimatii functiei f pe subintervalele 4, 8, 16, 32, iar e1p, e2p, e3p, e4p reprezinta erorile aproximarii primei derivate a functiei f pe aceleasi subintervale.
+e1/e2=7.987004e+00
+e2/e3=7.996749e+00
+e3/e4=7.999187e+00
+e1p/e2p=3.993633e+00
+e2p/e3p=3.998407e+00
+e3p/e4p=3.999602e+00
 Explicatie: 
+Din rezultatele de mai sus se observa o diferenta de aproximativ 10^-1 intre valorile erorilor, atat pentru aproximarea functiei f, cat si pentru prima derivata a acesteia. Din aceste rezultate reiese faptul ca o impartire a subintervalului cat mai mare asigura o aproximare cat mai buna.

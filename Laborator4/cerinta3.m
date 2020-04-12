@@ -1,20 +1,42 @@
-function cerinta3(A)
+function cerinta3(fileID, A)
     figure(1);
+    % inline este vechi si va fi scos in versiunile anterioare de Matlab
     % f=inline('sin(x+A)');
-    x=0:0.01:pi/2;
+    xval=0:0.01:pi/2;
     f=@(x) (sin(x+A));
-    rez=feval(f,x);
-    plot(x,rez,'b');
+    rez=feval(f,xval);
+    plot(xval,rez,'b');
     hold on;
-    xval1=linspace(0,pi/2,5);
-    yval1=interpliniar(x,f,xval1);
-    plot(xval1,yval1,'r');
+    x1=linspace(0,pi/2,5);
+    yval1=interpliniar(x1,f,xval);
+    plot(xval,yval1,'r');
     hold on;
-    xval2=linspace(0,pi/2,9);
-    yval2=interpliniar(x,f,xval2);
-    plot(xval2,yval2,'y');
+    x2=linspace(0,pi/2,9);
+    yval2=interpliniar(x2,f,xval);
+    plot(xval,yval2,'y');
     hold on;
-    xval3=linspace(0,pi/2,17);
-    yval3=interpliniar(x,f,xval3);
-    plot(xval3,yval3,'magenta');
+    x3=linspace(0,pi/2,17);
+    yval3=interpliniar(x3,f,xval);
+    plot(xval,yval3,'magenta');
+    legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2','Functia evaluata in x3');
+    fprintf(fileID,'figure(1);\n');
+    fprintf(fileID,'% inline este vechi si va fi scos in versiunile anterioare de Matlab\n');
+    fprintf(fileID,"% f=inline('sin(x+A)');\n");
+    fprintf(fileID,'xval=0:0.01:pi/2;\n');
+    fprintf(fileID,'f=@(x) (sin(x+A));\n');
+    fprintf(fileID,'rez=feval(f,xval);\n');
+    fprintf(fileID,"plot(xval,rez,'b');\n");
+    fprintf(fileID,'hold on;\n');
+    fprintf(fileID,'x1=linspace(0,pi/2,5);\n');
+    fprintf(fileID,'yval1=interpliniar(x1,f,xval);\n');
+    fprintf(fileID,"plot(xval,yval1,'r');\n");
+    fprintf(fileID,'hold on;\n');
+    fprintf(fileID,'x2=linspace(0,pi/2,9);\n');
+    fprintf(fileID,'yval2=interpliniar(x2,f,xval);\n');
+    fprintf(fileID,"plot(xval,yval2,'y');\n");
+    fprintf(fileID,'hold on;\n');
+    fprintf(fileID,'x3=linspace(0,pi/2,17);\n');
+    fprintf(fileID,'yval3=interpliniar(x3,f,xval);\n');
+    fprintf(fileID,"plot(xval,yval3,'magenta');\n");
+    fprintf(fileID,"legend('Functia evaluata in xval','Functia evaluata in x1','Functia evaluata in x2','Functia evaluata in x3');\n");
 end
