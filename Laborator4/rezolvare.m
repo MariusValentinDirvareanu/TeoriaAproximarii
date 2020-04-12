@@ -3,6 +3,21 @@ A = log2(sum(double('DIRVAREANUMARIUS')))
 fileID = fopen('rezolvare.txt','w');
 
 
+fprintf(fileID,'==Cerinta 1==\n');
+fprintf(fileID,"function yval=interpliniar(x,f,xval)\n");
+fprintf(fileID,"n=length(x);\n");
+fprintf(fileID,"y=feval(f,x);\n");
+fprintf(fileID,"yval=xval;\n");
+fprintf(fileID,"for k=1:length(xval)\n");
+fprintf(fileID,"i=sum(x<=xval(k));\n");
+fprintf(fileID,"if(i==n)\n");
+fprintf(fileID,"i=n-1;\n");
+fprintf(fileID,"end\n");
+fprintf(fileID,"yval(k)=(y(i+1)-y(i))*(xval(k)-x(i))/(x(i+1)-x(i))+y(i);\n");
+fprintf(fileID,"end\n");
+fprintf(fileID,"end\n");
+fprintf(fileID,'\n\n');
+
 fprintf(fileID,'==Cerinta 2==\n');
 cerinta2(fileID,A);
 fprintf(fileID,'Explicatie: \n');

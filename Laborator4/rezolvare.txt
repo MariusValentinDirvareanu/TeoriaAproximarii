@@ -1,3 +1,18 @@
+==Cerinta 1==
+function yval=interpliniar(x,f,xval)
+n=length(x);
+y=feval(f,x);
+yval=xval;
+for k=1:length(xval)
+i=sum(x<=xval(k));
+if(i==n)
+i=n-1;
+end
+yval(k)=(y(i+1)-y(i))*(xval(k)-x(i))/(x(i+1)-x(i))+y(i);
+end
+end
+
+
 ==Cerinta 2==
 Rezultat: 3.552714e-15
 Explicatie: 
