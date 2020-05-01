@@ -36,8 +36,8 @@ function c=fem1(n)
         %aplicam formula de cuadratura pe [(i-1)/n,i/n]
         % ea presupune evaluarea functiilor ce trebuie integrate in nodurile
         %formulei de cuadratura
-        F(i)=F(i)+w’*(????????*(i/n-x)/h);
-        F(i+1)= F(i+1)+w’*(????????*(x-(i-1)/n)/h);
+        F(i)=F(i)+w'*(????????*(i/n-x)/h);
+        F(i+1)= F(i+1)+w'*(????????*(x-(i-1)/n)/h);
     end
     F(1)=0;
     F(n+1)=0;
