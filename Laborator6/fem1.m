@@ -12,9 +12,9 @@ function c=fem1(n)
     h=1/n;
     %calculam componentele matricii A
     for i=2:n
-        A(i,i-1)=???????;
-        A(i,i)=?????????;
-        A(i,i+1)=??????;
+        A(i,i-1)=-1/h;
+        A(i,i)=2/h;
+        A(i,i+1)=-1/h;
     end
     %termenul liber
     F=zeros(n+1,1);
@@ -36,11 +36,13 @@ function c=fem1(n)
         %aplicam formula de cuadratura pe [(i-1)/n,i/n]
         % ea presupune evaluarea functiilor ce trebuie integrate in nodurile
         %formulei de cuadratura
-        F(i)=F(i)+w'*(????????*(i/n-x)/h);
-        F(i+1)= F(i+1)+w'*(????????*(x-(i-1)/n)/h);
+        F(i)=F(i)+w'*(F(i)*(i/n-x)/h);
+        F(i+1)= F(i+1)+w'*(F(i+1)*(x-(i-1)/n)/h);
     end
     F(1)=0;
+%     F(1)=1.1;
     F(n+1)=0;
+%     F(n+1)=2.1;
     c=A\F;
 end
 %===========================
