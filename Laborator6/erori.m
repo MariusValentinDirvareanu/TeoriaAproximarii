@@ -1,5 +1,6 @@
 %=====================
 function [er,erprim]=erori(n)
+    Ast=1.1;
     h=1/n;
     c=fem1(n);
     er=0;
@@ -11,8 +12,8 @@ function [er,erprim]=erori(n)
         w=w*h/2;
         x=x*h/2+(2*i-1)/(2*n);
         %aplicam formula de cuadratura
-        erprim=erprim+w'*(pi*cos(pi*x)+c(i)/h-c(i+1)/h).^2;
-        er=er+w'*(sin(pi*x)-c(i)*(i/n-x)/h-c(i+1)*(x-(i-1)/n)/h).^2;
+        erprim=erprim+w'*(Ast*pi*cos(pi*x)+c(i)/h-c(i+1)/h).^2;
+        er=er+w'*(Ast*sin(pi*x)-c(i)*(i/n-x)/h-c(i+1)*(x-(i-1)/n)/h).^2;
     end
     er=sqrt(er);
     erprim=sqrt(erprim);

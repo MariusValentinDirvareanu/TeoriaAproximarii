@@ -1,5 +1,5 @@
 %===========================
-function c=fem1(n)
+function c=fem1c5(n)
     Ast=1.1;
     %metoda elementului finit cu elemente continue, liniare pe portiuni.
     % f(x)=pi^2 sin(pi x)
@@ -37,11 +37,11 @@ function c=fem1(n)
         %aplicam formula de cuadratura pe [(i-1)/n,i/n]
         % ea presupune evaluarea functiilor ce trebuie integrate in nodurile
         %formulei de cuadratura
-        F(i)=F(i)+w'*(Ast*pi^2*sin(pi*x).*(i/n-x)/h);
-        F(i+1)= F(i+1)+w'*(Ast*pi^2*sin(pi*x).*(x-(i-1)/n)/h);
+        F(i)=F(i)+w'*(-6*x.*(i/n-x)/h);
+        F(i+1)= F(i+1)+w'*(-6*x.*(x-(i-1)/n)/h);
     end
-    F(1)=0;
-    F(n+1)=0;
+    F(1)=Ast;
+    F(n+1)=Ast+1;
     c=A\F;
 end
 %===========================
