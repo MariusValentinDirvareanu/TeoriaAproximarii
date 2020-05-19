@@ -1,0 +1,17 @@
+Laborator 7
+
+Pentru problema Poisson  cu  f(x,y)=- 2*x*(x - 1) - 2*y*(y - 1) 
+pe [0,1]x[0,1]
+
+solutia exacta este u(x,y)=xy(1-x)(1-y)
+
+pentru  n=5,10,20,40 
+
+1) construiti matricea R definita la curs ( matrice de dimensiune (n-1)^2 x (n-1)^2
+2) construiti termenul liber F definit la curs ( vector de dimensiune (n-1)^2 )
+3) rezolvati sistemul Rc=F
+4) verificati ca  (suma (dupa i,j) |u(x_i,y_j)-c(k)|^2 )^1/2 converge catre 0 pe masura ce n creste. 
+(aici relatia dintre indicii i, j si k a fost definita la curs) 
+ 
+
+
