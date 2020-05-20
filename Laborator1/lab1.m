@@ -6,7 +6,7 @@ x=-5:0.01:5;
 
 %generam vectorul ce va fi proiectat, valorile functiei runge pe reteaua x.
 
-v=1./(1+x.^2);
+v=1./(x+x.^3);
 
 %generam vectorii din spatiul in care proiectam, adica evaluam 1,x,x^2,...,x^11 pe reteaua respectiva si stocam vectorii rezultati pe %liniile lui A.
 n=length(v);
